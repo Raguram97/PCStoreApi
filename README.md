@@ -31,5 +31,3 @@ A production-ready RESTful Web API built with ASP.NET Core Minimal APIs and Clea
 - **FluentValidation** for structured and reusable input validation
 - SQL Server integration with EF Core migrations
 - Manual testing done using **Postman** and real SQL Server database
-
----
