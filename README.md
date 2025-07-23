@@ -31,3 +31,16 @@ A production-ready RESTful Web API built with ASP.NET Core Minimal APIs and Clea
 - **FluentValidation** for structured and reusable input validation
 - SQL Server integration with EF Core migrations
 - Manual testing done using **Postman** and real SQL Server database
+
+---
+
+## 📦 Required Packages
+
+The following NuGet packages are used in this project:
+
+- `Microsoft.EntityFrameworkCore.SqlServer` – Entity Framework Core with SQL Server support  
+- `Microsoft.EntityFrameworkCore.Tools` – EF Core command-line tools (for migrations)  
+- `AutoMapper` – For mapping between domain models and DTOs  
+- `FluentValidation` – Input validation for DTOs  
+- `FluentValidation.AspNetCore` – Middleware support for FluentValidation  
+- `AutoMapper.Extensions.Microsoft.DependencyInjection` – AutoMapper integration with DI container  
