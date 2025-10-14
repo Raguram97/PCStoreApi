@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using PCStoreApi.Application.DTOs.PCBuild;
 using PCStoreApi.Application.Interfaces;
-using PCStoreApi.DTOs.User;
+using PCStoreApi.Application.DTOs.User;
 
 namespace PCStoreApi.API.Endpoints
 {
