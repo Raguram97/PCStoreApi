@@ -2,6 +2,7 @@
 using PCStoreApi.Application.DTOs.PCBuild;
 using PCStoreApi.Application.Interfaces;
 using PCStoreApi.Application.DTOs.User;
+using PCStoreApi.Application.Services;
 
 namespace PCStoreApi.API.Endpoints
 {
@@ -23,6 +24,19 @@ namespace PCStoreApi.API.Endpoints
                 var build = await services.GetBuildByIdAsync(id);
                 return build is null ? Results.NotFound() : Results.Ok(build);
             });
+
+            group.MapGet("/user/{userId}", async (int userId, IPCBuildService pcBuildService, IUserService userService) =>
+            {
+                var user = await userService.GetUserByIdAsync(userId);
+                if(user is null)
+                {
+                    return Results.NotFound($"No user found with ID {userId}");
+                }
+
+                var builds = await pcBuildService.GetBuildsByUserIdAsync(userId);
+                return builds is null ? Results.NotFound($"No build found for this user ID {userId}") : Results.Ok(builds);
+            });
+
 
             group.MapPost("/", async ( PCBuildCreateDto dto,
                 IPCBuildService service,

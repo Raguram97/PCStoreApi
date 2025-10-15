@@ -35,6 +35,13 @@ namespace PCStoreApi.Infrastructure.Repositories
             return await _context.PCBuilds.Include(b=> b.User).FirstOrDefaultAsync(b => b.PCBuildId == id);
         }
 
+        public async Task<IEnumerable<PCBuild>> GetBuildsByUserIdAsync(int userId)
+        {
+            return await _context.PCBuilds
+                .Where(b => b.UserID == userId)
+                .ToListAsync();
+        }
+
         public async Task<bool> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync() > 0;
