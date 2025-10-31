@@ -39,24 +39,24 @@ namespace PCStoreApi.API.Endpoints
 
 
             group.MapPost("/", async ( PCBuildCreateDto dto,
-                IPCBuildService service,
-                IValidator<PCBuildCreateDto> validator) =>
+            IPCBuildService service,
+            IValidator<PCBuildCreateDto> validator) =>
+        {
+            var result = await validator.ValidateAsync(dto);
+            if (!result.IsValid)
             {
-                var result = await validator.ValidateAsync(dto);
-                if (!result.IsValid)
-                {
-                    var errors = result.Errors
-                        .GroupBy(e => e.PropertyName)
-                        .ToDictionary(
-                        g => g.Key,
-                        g => g.Select(e => e.ErrorMessage).ToArray());
+                var errors = result.Errors
+                    .GroupBy(e => e.PropertyName)
+                    .ToDictionary(
+                    g => g.Key,
+                    g => g.Select(e => e.ErrorMessage).ToArray());
 
-                    return Results.BadRequest(new { errors });
-                }
+                return Results.BadRequest(new { errors });
+            }
 
-                var created = await service.CreateBuildAsync(dto);
-                return Results.Created($"/pcbuilds/{created.PCBuildId}", created);
-            });
+            var created = await service.CreateBuildAsync(dto);
+            return Results.Created($"/pcbuilds/{created.PCBuildId}", created);
+        });
 
             group.MapPut("/{id}", async (int id, PCBuildUpdateDto dto, IPCBuildService service, IValidator<PCBuildUpdateDto> validator) =>
             {
