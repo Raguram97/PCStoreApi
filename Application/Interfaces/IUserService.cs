@@ -4,7 +4,7 @@ namespace PCStoreApi.Application.Interfaces
 {
     public interface IUserService
     {
-        Task<List<UserReadDto>> GetAllUsersAsync();
+        Task<IEnumerable<UserReadDto>> GetAllUsersAsync();
         Task<UserReadDto?> GetUserByIdAsync(int id);
         Task<UserReadDto?> CreateUserAsync(UserCreateDto dto);
         Task<bool> UpdateUserAsync(int id,UserUpdateDto dto);

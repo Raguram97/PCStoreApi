@@ -25,7 +25,7 @@ namespace PCStoreApi.Infrastructure.Repositories
             return Task.CompletedTask;
         }
 
-        public async Task<List<UserInfo>> GetAllUSersAsync()
+        public async Task<IEnumerable<UserInfo>> GetAllUSersAsync()
         {
             return await _context.UserInfo.Include(u => u.PCBuild).ToListAsync();
         }

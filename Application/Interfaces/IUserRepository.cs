@@ -4,7 +4,7 @@ namespace PCStoreApi.Application.Interfaces
 {
     public interface IUserRepository
     {
-        Task<List<UserInfo>> GetAllUSersAsync();
+        Task<IEnumerable<UserInfo>> GetAllUSersAsync();
         Task<UserInfo?> GetUserByIDAsync(int id);
         Task AddUserAsync(UserInfo user);
         Task UpdateUserAsync(UserInfo user);

@@ -37,7 +37,7 @@ namespace PCStoreApi.Application.Services
             return await _repo.SaveChangesAsync();
         }
 
-        public async Task<List<UserReadDto>> GetAllUsersAsync()
+        public async Task<IEnumerable<UserReadDto>> GetAllUsersAsync()
         {
             var users = await _repo.GetAllUSersAsync();
             return _mapper.Map<List<UserReadDto>>(users);
