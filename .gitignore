@@ -13,6 +13,11 @@ obj/
 # Visual Studio settings
 .vs/
 
+*.db
+
+TestResults/
+*.DS_Store
+
 # EF Core Migrations (optional if user regenerates them)
 Migrations/
 
