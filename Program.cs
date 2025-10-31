@@ -2,6 +2,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using PCStoreApi;
 using PCStoreApi.API.Endpoints;
 using PCStoreApi.Application.Interfaces;
 using PCStoreApi.Application.Services;
