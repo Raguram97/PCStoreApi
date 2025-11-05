@@ -39,7 +39,7 @@ namespace PCStoreApi.Application.Services
 
         public async Task<IEnumerable<UserReadDto>> GetAllUsersAsync()
         {
-            var users = await _repo.GetAllUSersAsync();
+            var users = await _repo.GetAllUsersAsync();
             return _mapper.Map<List<UserReadDto>>(users);
         }
 
