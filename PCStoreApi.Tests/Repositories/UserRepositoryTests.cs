@@ -17,8 +17,8 @@ namespace PCStoreApi.Tests.Repositories
 {
     public class UserRepositoryTests
     {
-        private AppDbContext _context;
-        private UserRepository _repo;
+        private AppDbContext? _context;
+        private UserRepository? _repo;
 
         private async Task InitializeAsync()
         {
