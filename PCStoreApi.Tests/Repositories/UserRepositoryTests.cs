@@ -54,7 +54,7 @@ namespace PCStoreApi.Tests.Repositories
                 Address = address
             };
 
-            await _repo.AddUserAsync(user);
+            await _repo!.AddUserAsync(user);
             await _repo.SaveChangesAsync();
 
             var users = await _repo.GetAllUsersAsync();
@@ -77,7 +77,7 @@ namespace PCStoreApi.Tests.Repositories
 
             var user = new UserInfo { FullName = fullName, Email = email, Address = address };
 
-            await _repo.AddUserAsync(user);
+            await _repo!.AddUserAsync(user);
             await _repo.SaveChangesAsync();
 
             var fetchedUser = await _repo.GetUserByIDAsync(user.UserID);
@@ -101,7 +101,7 @@ namespace PCStoreApi.Tests.Repositories
                 Email = oldEmail,
                 Address = oldAddress
             };
-            await _repo.AddUserAsync(user);
+            await _repo!.AddUserAsync(user);
             await _repo.SaveChangesAsync();
 
             user.FullName = newFullName;
@@ -120,18 +120,18 @@ namespace PCStoreApi.Tests.Repositories
 
         [Theory]
         [InlineData("Sumala", "sumala@kumala.com", "Indonesia")]
-        public async Task DeleteUserAsync_ShouldRemoveUserFromDatabase(string fulllName, string email, string address)
+        public async Task DeleteUserAsync_ShouldRemoveUserFromDatabase(string fullName, string email, string address)
         {
             await InitializeAsync();
 
             var user = new UserInfo
             {
-                FullName = fulllName,
+                FullName = fullName,
                 Email = email,
                 Address = address
             };
 
-            await _repo.AddUserAsync(user);
+            await _repo!.AddUserAsync(user);
             await _repo.SaveChangesAsync();
 
             await _repo.DeleteUserAsync(user);
@@ -160,10 +160,10 @@ namespace PCStoreApi.Tests.Repositories
 
             foreach (var user in users)
             {
-                await _repo.AddUserAsync(user);
+                await _repo!.AddUserAsync(user);
             }
 
-            await _repo.SaveChangesAsync();
+            await _repo!.SaveChangesAsync();
             var result = await _repo.GetAllUsersAsync();
 
             result.Should().HaveCount(2);
