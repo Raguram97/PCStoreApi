@@ -18,8 +18,6 @@ obj/
 TestResults/
 *.DS_Store
 
-# EF Core Migrations (optional if user regenerates them)
-Migrations/
 
 # Other temp/cache files
 *.log
