@@ -7,7 +7,7 @@ namespace PCStoreApi.Application.Interfaces
     {
         Task<List<PCBuild>> GetAllBuildsAsync();
         Task<PCBuild?> GetBuildByIdAsync(int id);
-        Task<IEnumerable<PCBuild>> GetBuildsByUserIdAsync(int userId);
+        Task<PCBuild?> GetBuildByUserIdAsync(int userId);
         Task AddBuildAsync(PCBuild build);
         Task UpdateBuildAsync(PCBuild build);
         Task DeleteBuildAsync(PCBuild build);

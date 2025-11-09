@@ -28,35 +28,35 @@ namespace PCStoreApi.API.Endpoints
             group.MapGet("/user/{userId}", async (int userId, IPCBuildService pcBuildService, IUserService userService) =>
             {
                 var user = await userService.GetUserByIdAsync(userId);
-                if(user is null)
+                if (user is null)
                 {
                     return Results.NotFound($"No user found with ID {userId}");
                 }
 
-                var builds = await pcBuildService.GetBuildsByUserIdAsync(userId);
-                return builds is null ? Results.NotFound($"No build found for this user ID {userId}") : Results.Ok(builds);
+                var build = await pcBuildService.GetBuildByUserIdAsync(userId);
+                return build is null ? Results.NotFound($"No build found for this user ID {userId}") : Results.Ok(build);
             });
 
 
-            group.MapPost("/", async ( PCBuildCreateDto dto,
+            group.MapPost("/", async (PCBuildCreateDto dto,
             IPCBuildService service,
             IValidator<PCBuildCreateDto> validator) =>
-        {
-            var result = await validator.ValidateAsync(dto);
-            if (!result.IsValid)
             {
-                var errors = result.Errors
-                    .GroupBy(e => e.PropertyName)
-                    .ToDictionary(
-                    g => g.Key,
-                    g => g.Select(e => e.ErrorMessage).ToArray());
+                var result = await validator.ValidateAsync(dto);
+                if (!result.IsValid)
+                {
+                    var errors = result.Errors
+                        .GroupBy(e => e.PropertyName)
+                        .ToDictionary(
+                        g => g.Key,
+                        g => g.Select(e => e.ErrorMessage).ToArray());
 
-                return Results.BadRequest(new { errors });
-            }
+                    return Results.BadRequest(new { errors });
+                }
 
-            var created = await service.CreateBuildAsync(dto);
-            return Results.Created($"/pcbuilds/{created.PCBuildId}", created);
-        });
+                var created = await service.CreateBuildAsync(dto);
+                return Results.Created($"/pcbuilds/{created.PCBuildId}", created);
+            });
 
             group.MapPut("/{id}", async (int id, PCBuildUpdateDto dto, IPCBuildService service, IValidator<PCBuildUpdateDto> validator) =>
             {

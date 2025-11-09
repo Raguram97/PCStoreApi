@@ -45,11 +45,11 @@ namespace PCStoreApi.Application.Services
             return _mapper.Map<PCBuildReadDto>(build);
         }
 
-        public async Task<IEnumerable<PCBuildReadDto>> GetBuildsByUserIdAsync(int userId)
+        public async Task<PCBuildReadDto> GetBuildByUserIdAsync(int userId)
         {
 
-            var builds = await _repo.GetBuildsByUserIdAsync(userId);
-            return _mapper.Map<IEnumerable<PCBuildReadDto>>(builds);
+            var builds = await _repo.GetBuildByUserIdAsync(userId);
+            return _mapper.Map<PCBuildReadDto>(builds);
         }
 
         public async Task<bool> UpdateBuildAsync(int id, PCBuildUpdateDto dto)
